@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as fs from 'fs';
-import * as Converter from 'openapi-to-postmanv2';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -25,21 +24,6 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   fs.writeFileSync('src/postman/collections/swagger.json', JSON.stringify(document, null, 2));
-
-  // Convert OpenAPI to Postman Collection
-  Converter.convert(
-    { type: 'json', data: document },
-    {},
-    (err: any, result: any) => {
-      if (!err && result.result) {
-        fs.writeFileSync(
-          'src/postman/collections/postman-collection.json',
-          JSON.stringify(result.output[0].data, null, 2),
-        );
-        console.log('Postman collection saved to: src/postman/collections/postman-collection.json');
-      }
-    },
-  );
 
   SwaggerModule.setup('api', app, document);
 
