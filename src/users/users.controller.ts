@@ -48,7 +48,7 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Patch(':id/upd')
+  @Patch(':id')
   @ApiOperation({ summary: 'Update user', description: 'Update an existing user by ID' })
   @ApiParam({ name: 'id', description: 'User ID', type: Number })
   @ApiResponse({ status: 200, description: 'User updated successfully', type: User })
