@@ -35,6 +35,7 @@ export class UsersController {
   @ApiParam({ name: 'id', description: 'User ID', type: Number })
   @ApiResponse({ status: 200, description: 'User found and returned successfully', type: User })
   @ApiResponse({ status: 404, description: 'User not found' })
+  @ApiResponse({ status: 422, description: 'Input validation failed' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.findOne(id);
   }
