@@ -23,7 +23,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  fs.writeFileSync('postman/collections/swagger.json', JSON.stringify(document, null, 2));
+  fs.writeFileSync('src/postman/collections/swagger.json', JSON.stringify(document, null, 2));
 
   SwaggerModule.setup('api', app, document);
 
