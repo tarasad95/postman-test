@@ -186,7 +186,7 @@
         ]
       }
     },
-    "/users/{id}/update": {
+    "/users/{id}/upd": {
       "patch": {
         "description": "Update an existing user by ID",
         "operationId": "UsersController_update",
